@@ -99,22 +99,21 @@ class HTMLDestination:
           </head>
           <body>
           <h1>Today's News</h1>
-          """, file=out  
-        )
+        """, file=out)
         print('<ul>', file=out)
         id = 0
         for item in items:
             id += 1
-            print(' <li><a href="#{}">{}</a></li>'.format(id, item.title), file=out)
+            print('   <li><a href="#{}">{}</a></li>'.format(id, item.title), file=out)
         print('</ul>', file=out)
         id = 0
         for item in items:
-            print('<h2><a name="{}">{}</a></h2>'.format(id, item.title), file = out)
-            print('<pre>{}</pre>'.format(item.body), file = out)
+            print('<h2><a name="{}">{}</a></h2>'.format(id, item.title), file=out)
+            print('<pre>{}</pre>'.format(item.body), file=out)
         print("""
           </body>
         </html>
-        """, file = out)
+        """, file=out)
 
 def runDefaultSetup():
      """
@@ -123,18 +122,18 @@ def runDefaultSetup():
      agent = NewsAgent()
 
      # A SimpleWebSource that retrieves news from Reuters:
-     reuters_url = 'http://www.reuters.com/news/world'
+     reuters_url = 'https://www.reuters.com/news/world'
      reuters_title = r'<h2><a href="[^"]*"\s*>(.*?)</a>'
      reuters_body = r'</h2><p>(.*?)</p>'
      reuters = SimpleWebSource(reuters_url, reuters_title, reuters_body)
      agent.add_source(reuters)
      # An NNTPSource that retrieves news from comp.lang.python.announce:
-     clpa_server = 'news.foo.bar'
-     clpa_server = 'news.ntnu.no'
-     clpa_group = 'comp.lang.python.announce'
-     clpa_howmany = 10
-     clpa = NNTPSource(clpa_server, clpa_group, clpa_howmany)
-     agent.add_source(clpa)
+     #clpa_server = 'news.foo.bar'
+     #clpa_server = 'news.ntnu.no'
+     #clpa_group = 'comp.lang.python.announce'
+     #clpa_howmany = 10
+     #clpa = NNTPSource(clpa_server, clpa_group, clpa_howmany)
+     #agent.add_source(clpa)
      # Add destination
      agent.addDestination(PlainDestination())
      agent.addDestination(HTMLDestination('news.html'))
