@@ -21,10 +21,8 @@ class CommandHandler:
         
         parts = line.split(' ', 1)
         cmd = parts[0]
-        try: 
-            line = parts[1].strip()
-        except IndexError:
-            line = ''
+        try: line = parts[1].strip()
+        except IndexError: line = ''
         # Try to find a handler
         meth = getattr(self, 'do_' + cmd, None)
         try:
@@ -175,4 +173,3 @@ if __name__ == '__main__':
     s = ChatServer(PORT, NAME)
     try: asyncore.loop()
     except KeyboardInterrupt: print()
-        
