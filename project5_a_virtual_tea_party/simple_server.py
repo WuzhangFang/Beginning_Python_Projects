@@ -11,3 +11,6 @@ s.create_socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 5005))
 s.listen(5)
 asyncore.loop()
+
+# $ python3 simple_server.py
+# $ telnet localhost 5005
